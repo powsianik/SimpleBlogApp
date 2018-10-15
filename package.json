@@ -1,0 +1,22 @@
+{
+  "name": "simpleblogapp",
+  "version": "1.0.0",
+  "description": "Simple blog app making as an excercise for learning express ang mongo",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/powsianik/SimpleBlogApp.git"
+  },
+  "author": "Przemysław Owsianik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/powsianik/SimpleBlogApp/issues"
+  },
+  "homepage": "https://github.com/powsianik/SimpleBlogApp#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
