@@ -4,6 +4,11 @@ const mongoose = require('mongoose');
 const app = express();
 const portForLocalhost = 4000;
 
+app.set("view engine", 'ejs');
+
+app.use(express.static("resources"));
+app.use(bodyParser.urlencoded({extended: true}));
+
 mongoose.connect('mongodb://localhost/blog_app');
 
 var blogPostSchema = new mongoose.Schema({
@@ -36,7 +41,7 @@ BlogPost.create({
 
 //ROUTES ===================================================================================================
 app.get('/', (req, res) => {
-    res.send("Main page");
+    res.render("index");
 });
 
 app.listen(portForLocalhost, () => console.log("App is listetning on port " + portForLocalhost));
