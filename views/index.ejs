@@ -1,7 +1,13 @@
+<%- include ./partials/header %>
+
 <% blogposts.forEach((blogpost) => { %>
-    <h3><%= blogpost.title %></h3>
-    <p><%= blogpost.date %></p>
-    <image style="width: 800px" src="<%= blogpost.imgUrl %>"></image>
-    <p><%= blogpost.contentText %></p>
-    <p><%=blogpost.author%></p>
+    <div class="ui raised very padded text container segment">
+        <h3 class="ui header"><%= blogpost.title %></h3>
+        <p><%= blogpost.date %></p>
+        <image style="width: 500px" src="<%= blogpost.imgUrl %>"></image>
+        <p><%= blogpost.contentText %></p>
+        <p><%= blogpost.author %></p>
+    </div>
 <% }) %>
+
+<%- include ./partials/footer %>
