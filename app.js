@@ -16,7 +16,7 @@ var blogPostSchema = new mongoose.Schema({
     contentText: String,
     imgUrl: String,
     author: String,
-    date: {type: Date, default: Date.Now}
+    date: {type: Date, default: Date.now}
 });
 
 var BlogPost = mongoose.model('BlogPost', blogPostSchema);
@@ -40,8 +40,15 @@ BlogPost.create({
 */
 
 //ROUTES ===================================================================================================
-app.get('/', (req, res) => {
-    res.render("index");
+app.get('/blogposts', (req, res) => {
+    BlogPost.find({}, (err, blogposts) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("index", {blogposts: blogposts});
+        }
+    });
 });
 
 app.listen(portForLocalhost, () => console.log("App is listetning on port " + portForLocalhost));

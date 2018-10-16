@@ -1,1 +1,7 @@
-<h1>Main view</h1>
+<% blogposts.forEach((blogpost) => { %>
+    <h3><%= blogpost.title %></h3>
+    <p><%= blogpost.date %></p>
+    <image style="width: 800px" src="<%= blogpost.imgUrl %>"></image>
+    <p><%= blogpost.contentText %></p>
+    <p><%=blogpost.author%></p>
+<% }) %>
