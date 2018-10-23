@@ -1,11 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const methodOverride = require("method-override");
 const app = express();
 const portForLocalhost = 4000;
 
 app.set("view engine", 'ejs');
 
+app.use(methodOverride('_method'));
 app.use(express.static("resources"));
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -73,6 +75,39 @@ app.get("/blogposts/:id", (req, res) => {
             console.log("Something went wrong while showing post: " + err);
         } else {
             res.render("show", {post:blogpost});
+        }
+    });
+});
+
+app.get("/blogposts/:id/edit", (req, res) =>{
+    BlogPost.findById(req.params.id, (err, blogpost) => {
+        if (err) {
+            console.log("Something went wrong while editing post: " + err);
+        } else {
+            res.render("edit", {post:blogpost});
+        }
+    });
+});
+
+app.put("/blogposts/:id", (req, res) => {
+    BlogPost.findByIdAndUpdate(req.params.id, req.body.blogPost, (err, blogPost) => {
+        if(err){
+            console.log("Something went wrong while updating: " + err);
+        }
+        else{
+            console.log("succes!");
+            res.redirect("/blogposts/"+blogPost._id);
+        }
+    })
+});
+
+app.delete("/blogposts/:id", (req, res) =>{
+   BlogPost.deleteOne({_id: req.params.id}, (err) =>{
+        if(err){
+            console.log("Something went wrong while deleting: " + err);
+        }
+        else{
+            res.redirect("/blogposts");
         }
     });
 });

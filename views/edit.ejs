@@ -1,0 +1,35 @@
+<%- include ./partials/header %>
+
+<div class="ui main text container">
+    <div class="ui huge header">Edit: <%= post.title %></div>
+    <form class="ui form" action="/blogposts/<%= post._id %>?_method=PUT" method="post">
+        <div class="field">
+            <label>Post Title</label>
+            <input type="text" name="blogPost[title]" value="<%= post.title %>">
+        </div>
+        <div class="field">
+            <label>Url of Image</label>
+            <input type="text" name="blogPost[imgUrl]"  value="<%= post.imgUrl %>">
+        </div>
+        <div class="field">
+            <label>Content</label>
+            <textarea name="blogPost[contentText]"><%= post.contentText %></textarea>
+        </div>
+        <div class="field">
+            <label>Date and Time</label>
+            <div class="ui calendar" id="example1">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" name="blogPost[date]" value="<%= post.date %>">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Author</label>
+            <input type="text" name="blogPost[author]" value="<%= post.author %>">
+        </div>
+        <button class="ui violet inverted button" type="submit">Save</button>
+    </form>
+</div>
+
+<%- include ./partials/footer %>
