@@ -5,8 +5,9 @@
         <h3 class="ui header"><%= blogpost.title %></h3>
         <p><%= blogpost.date %></p>
         <image style="width: 500px" src="<%= blogpost.imgUrl %>"></image>
-        <p><%= blogpost.contentText %></p>
+        <p><%= blogpost.contentText.substring(0,100) %></p>
         <p><%= blogpost.author %></p>
+        <a class="ui green inverted button" href="/blogposts/<%= blogpost._id%>">Read more</a>
     </div>
 <% }) %>
 

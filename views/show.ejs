@@ -1,0 +1,18 @@
+<%- include ./partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui huge header"><%= post.title %></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered rounded image" src="<%= post.imgUrl %>">
+            <div class="content">
+                <span><%= post.date %></span>
+            </div>
+            <div class="description">
+                <p><%= post.contentText %></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include ./partials/footer %>

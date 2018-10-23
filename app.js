@@ -67,4 +67,14 @@ app.post('/blogposts', (req, res) => {
     res.redirect("/blogposts");
 });
 
+app.get("/blogposts/:id", (req, res) => {
+    BlogPost.findById(req.params.id, (err, blogpost) => {
+        if (err) {
+            console.log("Something went wrong while showing post: " + err);
+        } else {
+            res.render("show", {post:blogpost});
+        }
+    });
+});
+
 app.listen(portForLocalhost, () => console.log("App is listetning on port " + portForLocalhost));
