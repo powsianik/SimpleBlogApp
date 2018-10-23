@@ -51,4 +51,20 @@ app.get('/blogposts', (req, res) => {
     });
 });
 
+app.get('/blogposts/new', (req, res) => {
+    res.render("new");
+});
+
+app.post('/blogposts', (req, res) => {
+    BlogPost.create(req.body.blogPost, (err, blogPost) => {
+        if (err) {
+            console.log("Something went wrong while creating new post: " + err);
+        } else {
+            console.log("Created new post!");
+        }
+    });
+
+    res.redirect("/blogposts");
+});
+
 app.listen(portForLocalhost, () => console.log("App is listetning on port " + portForLocalhost));
