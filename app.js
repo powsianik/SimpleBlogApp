@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const methodOverride = require("method-override");
+const sanitizer = require('express-sanitizer');
 const app = express();
 const portForLocalhost = 4000;
 
@@ -10,6 +11,7 @@ app.set("view engine", 'ejs');
 app.use(methodOverride('_method'));
 app.use(express.static("resources"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(sanitizer());
 
 mongoose.connect('mongodb://localhost/blog_app');
 
@@ -58,6 +60,7 @@ app.get('/blogposts/new', (req, res) => {
 });
 
 app.post('/blogposts', (req, res) => {
+    req.body.blogPost.contentText = req.sanitize(req.body.blogPost.contentText);
     BlogPost.create(req.body.blogPost, (err, blogPost) => {
         if (err) {
             console.log("Something went wrong while creating new post: " + err);
@@ -90,6 +93,7 @@ app.get("/blogposts/:id/edit", (req, res) =>{
 });
 
 app.put("/blogposts/:id", (req, res) => {
+    req.body.blogPost.contentText = req.sanitize(req.body.blogPost.contentText);
     BlogPost.findByIdAndUpdate(req.params.id, req.body.blogPost, (err, blogPost) => {
         if(err){
             console.log("Something went wrong while updating: " + err);

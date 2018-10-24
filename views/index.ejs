@@ -2,12 +2,19 @@
 
 <% blogposts.forEach((blogpost) => { %>
     <div class="ui container segment">
-        <h3 class="ui header"><%= blogpost.title %></h3>
-        <p><%= blogpost.date %></p>
-        <image style="width: 500px" src="<%= blogpost.imgUrl %>"></image>
-        <p><%= blogpost.contentText.substring(0,100) %></p>
-        <p><%= blogpost.author %></p>
-        <a class="ui green inverted button" href="/blogposts/<%= blogpost._id%>">Read more</a>
+        <div class="ui grid">
+            <div class="four wide column" style="col">
+                <image class="ui image" src="<%= blogpost.imgUrl %>"></image>
+            </div>
+            <div class="three wide column">
+                <h3 class="ui header"><%= blogpost.title %></h3>
+                <p><%= blogpost.date %></p>
+                <p><%- blogpost.contentText.substring(0,100) %></p>
+                <p><%= blogpost.author %></p>
+                <a class="ui green inverted button" href="/blogposts/<%= blogpost._id%>">Read more</a>
+            </div>
+        </div>
+
     </div>
 <% }) %>
 
